@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Include the Main React Dependencies
 import React from "react";
 import ReactDOM from "react-dom";
@@ -7,3 +8,21 @@ import Main from "./components/Main";
 
 // This code here allows us to render our main component (in this case "Main")
 ReactDOM.render(<Main />, document.getElementById("app"));
+=======
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+import { BrowserRouter, Route } from "react-router-dom"; 
+
+import Main from "./components/Main";
+
+ReactDOM.render(
+    (
+        <BrowserRouter>
+            <Route path="/" component={Main} />
+        </BrowserRouter>
+    ),
+    document.getElementById("app")
+);
+>>>>>>> update server file

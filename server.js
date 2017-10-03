@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 const express = require ("express");
 const bodyParser = require ("body-parser");
+=======
+'use strict'
+
+const express = require("express");
+const bodyParser = require("body-parser");
+>>>>>>> update server file
 const logger = require("morgan");
 const mongoose = require("mongoose");
 
@@ -8,6 +15,7 @@ const UserProfile = require("./models/UserProfile")
 
 //create instance of express
 const app = express();
+
 //sets initial port
 const PORT = process.env.PORT || 8080;
 
@@ -18,11 +26,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+app.use(express.static("./public"));
 // -------------------------------------------------
 
+<<<<<<< HEAD
 app.use(express.static("public"));
 
 mongoose.connect("mongodb://localhost/creativeCollective");
+=======
+mongoose.connect("mongodb://localhost/createCollective");
+>>>>>>> update server file
 
 // var MONGODB_URI = "mongodb://heroku_rl36q2jw:gus0pqk89m8sc8oadverlrjefs@ds147864.mlab.com:47864/heroku_rl36q2jw";
 // mongoose.connect(MONGODB_URI);
@@ -40,6 +53,19 @@ db.on("error", function(err) {
   app.get("/", function(req, res) {
     res.sendFile(__dirname + "/public/index.html");
   });
+
+db.on("error", function(err) {
+    console.log("Mongoose Error: ", err);
+});
+
+db.once("open", function() {
+    console.log("Mongoose connection successful.");
+});
+
+// Main "/" Route. Redirects user to rendered React application.
+app.get("*", function(req, res) {
+    res.sendFile(__dirname + "/public/index.html");
+});
 
 // Listener.
 app.listen(PORT, () => {
