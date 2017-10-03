@@ -10,7 +10,6 @@ class Home extends React.Component {
         super(props);
     
     }
-}
 
 render() {
 
@@ -39,11 +38,11 @@ render() {
 <div className="container">
   <h2 className="homeHeader">Creative Collective</h2>
 
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" className="carousel slide" data-ride="carousel">
 
       {/* Indicators */}
       <ol className="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
       </ol>
@@ -91,7 +90,6 @@ render() {
   
     );
   }
-
-
-
+}
+// Export the component back for use in other files
 export default Home;

@@ -15,12 +15,12 @@ import ReactDOM from "react-dom";
 
 import { BrowserRouter, Route } from "react-router-dom"; 
 
-import Main from "./components/Main";
+import Home from "./components/Home";
 
 ReactDOM.render(
     (
         <BrowserRouter>
-            <Route path="/" component={Main} />
+            <Route path="/" component={Home} />
         </BrowserRouter>
     ),
     document.getElementById("app")
