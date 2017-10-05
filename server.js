@@ -1,7 +1,5 @@
-'use strict'
-
-const express = ("express");
-const bodyParser = ("body-parser");
+const express = require ("express");
+const bodyParser = require ("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 
@@ -22,14 +20,28 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 // -------------------------------------------------
 
-mongoose.connect("mongodb://localhost/nytreact");
+app.use(express.static("public"));
+
+mongoose.connect("mongodb://localhost/creativeCollective");
 
 // var MONGODB_URI = "mongodb://heroku_rl36q2jw:gus0pqk89m8sc8oadverlrjefs@ds147864.mlab.com:47864/heroku_rl36q2jw";
 // mongoose.connect(MONGODB_URI);
 
-var db = mongoose.connection;
+var db = mongoose.connection; 
+
+db.on("error", function(err) {
+    console.log("Mongoose Error: ", err);
+  });
+  
+  db.once("open", function() {
+    console.log("Mongoose connection successful.");
+  });
+
+  app.get("/", function(req, res) {
+    res.sendFile(__dirname + "/public/index.html");
+  });
 
 // Listener.
-app.listen(process.env.PORT, () => {
+app.listen(PORT, () => {
     console.log("App listening on PORT: " + PORT);
 });
