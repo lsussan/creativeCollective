@@ -2,28 +2,23 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-    userName: {
-        type:String,
-        trim: true,
-        required:"String is required"
-    },
-    password: {
-        type:String,
-        trim:true
-    },
     name: {
-        type: String,
+        type: String, 
         trim: true
     },
     email: {
-        type: String,
-        match: [/.+\@.+\..+/, "Please enter a valid e-mail address"]
+        type: String, 
+        match: [/.+\@.+\..+/, "Please enter a valid e-mail address"], 
+        trim: true
     },
     specialty: {
-        type: String
+        type: String, 
+        trim: true
     },
 
 });
 
+//add username and password  and add validation to input username 
 var UserProfile = mongoose.model("UserProfile", UserSchema);
+
 module.exports = UserProfile;
