@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 'use strict'
 
 const express = require("express");
 const bodyParser = require("body-parser");
+=======
+const express = require ("express");
+const bodyParser = require ("body-parser");
+>>>>>>> e3ba488068651b67e4b2ff5f405a090c666fe124
 const logger = require("morgan");
 const mongoose = require("mongoose");
 
@@ -24,12 +29,30 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("./public"));
 // -------------------------------------------------
 
+<<<<<<< HEAD
 mongoose.connect("mongodb://localhost/createCollective");
+=======
+app.use(express.static("public"));
+
+mongoose.connect("mongodb://localhost/creativeCollective");
+>>>>>>> e3ba488068651b67e4b2ff5f405a090c666fe124
 
 // var MONGODB_URI = "mongodb://heroku_rl36q2jw:gus0pqk89m8sc8oadverlrjefs@ds147864.mlab.com:47864/heroku_rl36q2jw";
 // mongoose.connect(MONGODB_URI);
 
-var db = mongoose.connection;
+var db = mongoose.connection; 
+
+db.on("error", function(err) {
+    console.log("Mongoose Error: ", err);
+  });
+  
+  db.once("open", function() {
+    console.log("Mongoose connection successful.");
+  });
+
+  app.get("/", function(req, res) {
+    res.sendFile(__dirname + "/public/index.html");
+  });
 
 db.on("error", function(err) {
     console.log("Mongoose Error: ", err);
