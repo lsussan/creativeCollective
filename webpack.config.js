@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> e3ba488068651b67e4b2ff5f405a090c666fe124
 module.exports = {
     
       // This is the entry point or start of our react applicaton
