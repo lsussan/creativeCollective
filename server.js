@@ -21,7 +21,6 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // -------------------------------------------------
 app.use(express.static("public"));
 
-app.use(express.static("public"));
 
 mongoose.connect("mongodb://localhost/creativeCollective");
 
@@ -30,7 +29,7 @@ mongoose.connect("mongodb://localhost/creativeCollective");
 
 var db = mongoose.connection; 
 
-db.on("error", function(err) {
+ db.on("error", function(err) {
     console.log("Mongoose Error: ", err);
   });
   
@@ -42,20 +41,6 @@ db.on("error", function(err) {
     res.sendFile(__dirname + "/public/index.html");
   });
 
-db.on("error", function(err) {
-    console.log("Mongoose Error: ", err);
-  });
-  
-  db.once("open", function() {
-    console.log("Mongoose connection successful.");
-  });
-  
-  // -------------------------------------------------
-  
-  // Main "/" Route. This will redirect the user to our rendered React application
-  app.get("/", function(req, res) {
-    res.sendFile(__dirname + "/public/index.html");
-  });
 
 // Listener.
 app.listen(PORT, () => {

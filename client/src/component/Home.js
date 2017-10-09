@@ -88,4 +88,4 @@ render() {
     }
 }
 
-export default Home;
+export default main;

@@ -1,31 +1,19 @@
 {
   "name": "creativecollective",
   "version": "1.0.0",
-<<<<<<< HEAD
-  "description": "coolapp",
-=======
   "description": "creative collective app",
->>>>>>> e3ba488068651b67e4b2ff5f405a090c666fe124
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-<<<<<<< HEAD
-  "build": "webpack -w"
-=======
     "build": "webpack -w"
->>>>>>> e3ba488068651b67e4b2ff5f405a090c666fe124
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lsussan/creativeCollective.git"
   },
-<<<<<<< HEAD
-  "author": "rosa,cherise,louis",
-=======
   "author": "",
->>>>>>> e3ba488068651b67e4b2ff5f405a090c666fe124
-  "license": "ISC",
+  "license": "ISC", 
   "bugs": {
     "url": "https://github.com/lsussan/creativeCollective/issues"
   },
@@ -41,19 +29,14 @@
     "express": "^4.16.1",
     "mongoose": "^4.12.0",
     "morgan": "^1.9.0",
-<<<<<<< HEAD
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-router": "^4.2.0",
-=======
     "package.json": "^2.0.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-router": "^4.2.0"
+    "react-router": "^4.2.0",
+    "semantic-ui-react": "^0.74.2"
   },
   "proxy": "http://localhost:8080",
   "devDependencies": {
->>>>>>> e3ba488068651b67e4b2ff5f405a090c666fe124
     "webpack": "^3.6.0"
   }
 }
