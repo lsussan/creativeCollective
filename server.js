@@ -2,9 +2,10 @@ const express = require ("express");
 const bodyParser = require ("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+// const routes = require("./routes");
 
 //require UserProfile schema
-const UserProfile = require("./models/UserProfile")
+const User = require("./models/User")
 
 //create instance of express
 const app = express();
@@ -18,14 +19,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
+});
+
 // -------------------------------------------------
-app.use(express.static("public"));
+app.use(express.static("./client/public"));
 
-
+// app.use(routes);
 mongoose.connect("mongodb://localhost/creativeCollective");
 
-// var MONGODB_URI = "mongodb://heroku_rl36q2jw:gus0pqk89m8sc8oadverlrjefs@ds147864.mlab.com:47864/heroku_rl36q2jw";
-// mongoose.connect(MONGODB_URI);
+
 
 var db = mongoose.connection; 
 
@@ -36,9 +43,48 @@ var db = mongoose.connection;
   db.once("open", function() {
     console.log("Mongoose connection successful.");
   });
+//get from all users//
+  app.get("/api/saved", function(req, res) {
+    User.find({})
+      .exec(function(err, doc) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          res.send(doc);
+        }
+      });
+  });
+  
+  // Route to add user to database
+  app.post("/api/saved", function(req, res) {
+    var newUser = new User(req.body);
+    console.log(req.body);
+    newUser.save(function(err, doc) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        res.send(doc);
+      }
+    });
+  });
+  
+  // Route to delete an article from saved list
+  app.delete("/api/saved/", function(req, res) {
+    var url = req.param("url");
+    User.find({ url: url }).remove().exec(function(err) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        res.send("Deleted");
+      }
+    });
+  });
 
   app.get("/", function(req, res) {
-    res.sendFile(__dirname + "/public/index.html");
+    res.sendFile(__dirname + "/client/public/index.html");
   });
 
 

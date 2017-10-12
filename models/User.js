@@ -11,14 +11,22 @@ var UserSchema = new Schema({
         match: [/.+\@.+\..+/, "Please enter a valid e-mail address"], 
         trim: true
     },
+    password:{
+        types: String,
+        match: String, 
+    },
     specialty: {
         type: String, 
         trim: true
     },
+    image: {
+        type: String,
+        trim: true,
+    }
 
 });
 
 //add username and password  and add validation to input username 
-var UserProfile = mongoose.model("UserProfile", UserSchema);
+var User = mongoose.model("User", UserSchema);
 
-module.exports = UserProfile;
+module.exports = User;
